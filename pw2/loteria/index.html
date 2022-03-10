@@ -8,8 +8,36 @@
     <script src="index.js"></script>
 </head>
 <h1>mega sena</h1>
+
+
+<h3>Insira os numeros da loteria e boa sorte</h3>
+<p>coloque os numeros em ordem</p>
+<form class="" action="index.html" method="post">
+  <input type="text" name="powerball[]" value="" /><br>
+  <input type="text" name="powerball[]" value="" /><br>
+  <input type="text" name="powerball[]" value="" /><br>
+  <input type="text" name="powerball[]" value="" /><br>
+  <input type="text" name="powerball[]" value="" /><br>
+  <input type="text" name="powerball[]" value="" /><br>
+  <button type="button" name="button" onclick="bilhete()">
+      enviar
+  </button>
+</form>
+
+<p id="numerosEscolhidos"></p>
+
+
 <div class="submit">
-  <button onclick="generate();">Sortear</button>
+  <button onclick="generate()">Sortear</button>
 </div>
-<div id="numbers"></div>
+
+
+<div class="submit">
+  <button onclick="ganhador()">comparar</button>
+</div>
+
+<div id="numeros"></div>
+<div id="gg"></div>
+
+
 </html>
