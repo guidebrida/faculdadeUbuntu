@@ -1,6 +1,6 @@
-let minhaCallback = function conta(texto){
-    return texto.length
-}
+// let minhaCallback = function conta(texto){
+//     return texto.length
+
 
 var lista  =[
     {
