@@ -1,33 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>
-        Jogo Super Trunfo
-    </title>
-    <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8">
+    <title>Super Trunfo</title>
 </head>
 <body>
-<script src="index.js"></script>
-
-<div class="container">
-    <h1 class="page-title">Super Trunfo</h1>
-    <button onclick="sortearCarta()" id="btnSortear">Sortear carta</button>
-
-    <form id="form">
-        <h2>Escolha o seu atributo</h2>
-        <div class="wrapper">
-            <div id="placar"></div>
-            <div id="quantidade-cartas"></div>
-            <div id="cartas">
-                <div id="carta-jogador" class="carta"></div>
-                <div id="carta-maquina" class="carta"></div>
-            </div>
-            <button class="button-jogar" type="button" id="btnJogar" onclick="jogar()"
-                    disabled="false">Jogar</button>
-        </div>
-        <div id="resultado"></div>
-        <button type="button" id="btnProximaRodada" onclick="proximaRodada()" disabled="true">Proxima
-            rodada</button>
-    </form>
-</div>
+    <h1>Super Trunfo</h1>
+    <a href="jogar/singleplayer.html">
+        <input type="button" value="Um jogador">
+    </a>
+    <a href="Multiplayer.html">
+        <input type="button" value="Dois Jogadores">
+    </a>
 </body>
-
 </html>

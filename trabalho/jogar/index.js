@@ -1,20 +1,21 @@
 var api = fetch('https://akabab.github.io/superhero-api/api/all.json')
 
+
+var cartaMaquina
+var cartaJogador
+var cartas = []
+
+
 var dado = api.then(function(api) {
     return api.json()
 })
 
 dado.then(function (superhero) {
     for (i=0;i< superhero.length; i++){
-
+        cartas.push(dado)
+        console.log(cartas)
     }
 })
-
-
-
-var cartaMaquina
-var cartaJogador
-var cartas = []
 
 var pontosJogador = 0
 var pontosMaquina = 0
