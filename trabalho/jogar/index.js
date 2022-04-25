@@ -7,12 +7,13 @@ var cartas = []
 
 
 var dado = api.then(function(api) {
+    console.log(dado)
     return api.json()
 })
 
 dado.then(function (superhero) {
     for (i=0;i< superhero.length; i++){
-        cartas.push(dado)
+        cartas.push(api)
         console.log(cartas)
     }
 })
