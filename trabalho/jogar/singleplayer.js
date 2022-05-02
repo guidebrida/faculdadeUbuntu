@@ -155,16 +155,17 @@ var deckMaquina = [];
 var cartaJogador;
 var cartaMaquina;
 var ganhador = 0;
-var placar = [0,0];
 
 function iniciar(){
     divideCartas();
-    sortear();
+    console.log(deckJogador)
+    console.log(deckMaquina)
+    proximaCarta();
     document.getElementById("mensagem").innerHTML = "Escolha um atributo";
     document.getElementById("iniciar").disabled = true;
     document.getElementById("joga").disabled = false;
     exibirAtributos();
-    document.getElementById("placar").innerHTML = `Placar ${placar[0]} x ${placar[1]}`;
+    document.getElementById("placar").innerHTML = `Placar ${deckJogador.length} x ${deckMaquina.length}`;
 }
 
 function divideCartas() {
@@ -185,21 +186,18 @@ function divideCartas() {
     }
 }
 
-function sortear(){
+function proximaCarta(){
     ganhador = vencedor();
     if(ganhador == 0){
-        let numeroCartaJogador = parseInt(Math.random() * deckJogador.length);
-        let numeroCartaMaquina = parseInt(Math.random() * deckMaquina.length);
-        cartaJogador = deckJogador[numeroCartaJogador];
-        cartaMaquina = deckMaquina[numeroCartaMaquina];
+        cartaJogador = deckJogador[0];
+        cartaMaquina = deckMaquina[0];
         exibirCartaJogador();
         exibirAtributos();
         limpaCartaMaquina();
-        document.getElementById("sorteio").disabled = true;
+        document.getElementById("proximaCarta").disabled = true;
         document.getElementById("joga").disabled = false;
         document.getElementById("mensagem").innerHTML = "Escolha um atributo";
     }else{
-        placar = [0,0];
         cartaJogador = null;
         cartaMaquina = null;
     }
@@ -250,7 +248,6 @@ function atributoSelecionado(){
     let pegaAtributo = document.getElementsByName("atributo");
     for(let i = 0; i < pegaAtributo.length; i++){
         if(pegaAtributo[i].checked){
-            console.log(pegaAtributo[i].value)
             return pegaAtributo[i].value;
         }
     }
@@ -259,36 +256,60 @@ function atributoSelecionado(){
 function jogar(){
     exibirCartaMaquina();
     let atributo = atributoSelecionado();
-    console.log(atributo)
     let resultado = document.getElementById("mensagem");
     let valorCartaJogador = cartaJogador.atributos[atributo];
     let valorCartaMaquina = cartaMaquina.atributos[atributo];
-    document.getElementById("sorteio").disabled = false;
+    document.getElementById("proximaCarta").disabled = false;
     document.getElementById("joga").disabled = true;
 
     if(valorCartaJogador > valorCartaMaquina){
         resultado.innerHTML = "Você venceu";
-        placar[0]++;
+        deckJogador.push(deckMaquina[0])
+        deckMaquina.splice(0,1)
     }else if(valorCartaJogador < valorCartaMaquina){
         resultado.innerHTML = "Você perdeu";
-        placar[1]++;
+        deckMaquina.push(deckJogador[0])
+        deckJogador.splice(0,1)
     }else if(valorCartaJogador === valorCartaMaquina){
         resultado.innerHTML = "Empate!"
     }
-    document.getElementById("placar").innerHTML = `Placar ${placar[0]} x ${placar[1]}`;
+    document.getElementById("placar").innerHTML = `Placar ${deckJogador.length} x ${deckMaquina.length}`;
+    trocarCartas()
+    console.log(deckJogador)
+    console.log(deckMaquina)
+}
+
+function trocarCartas(){
+    let aux = []
+    aux[0] = deckJogador[0]
+    for(let i = 0; i < deckJogador.length; i++){
+        if(deckJogador.length !== i+1){
+            deckJogador[i] = deckJogador[i+1]
+        }else{
+            deckJogador[i] = aux[0] 
+        }
+    }
+    aux[0] = deckMaquina[0]
+    for(let i = 0; i < deckMaquina.length; i++){
+        if(deckMaquina.length !== i+1){
+            deckMaquina[i] = deckMaquina[i+1]
+        }else{
+            deckMaquina[i] = aux[0] 
+        }
+    }
 }
 
 function vencedor(){
-    if(placar[0] == 10){
+    if(deckJogador.length == 10){
         document.getElementById("mensagem").innerHTML = "Parabéns você venceu!"
         document.getElementById("joga").disabled = true;
-        document.getElementById("sorteio").disabled = true;
+        document.getElementById("proximaCarta").disabled = true;
         document.getElementById("iniciar").disabled = false;
         return true;
-    }else if(placar[1] == 10){
+    }else if(deckMaquina.length == 10){
         document.getElementById("mensagem").innerHTML = "Infelizmente você perdeu!"
         document.getElementById("joga").disabled = true;
-        document.getElementById("sorteio").disabled = true;
+        document.getElementById("proximaCarta").disabled = true;
         document.getElementById("iniciar").disabled = false;
         return true;
     }else{
