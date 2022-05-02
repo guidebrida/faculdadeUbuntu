@@ -1,5 +1,6 @@
 var cartaBranca = {
         nome: "",
+        imagem: "",
         atributos: {
             Inteligência: "",
             Força: "",
@@ -25,6 +26,7 @@ const request = () => {
           baralho = [
               carta1 = {
                   nome: array[0].name,
+                  imagem: array[0].images.lg,
                   atributos: {
                       Inteligência: array[0].powerstats.intelligence,
                       Força: array[0].powerstats.strength,
@@ -36,6 +38,7 @@ const request = () => {
               },
               carta2 = {
                   nome: array[1].name,
+                  imagem: array[1].images.lg,
                   atributos: {
                       Inteligência: array[1].powerstats.intelligence,
                       Força: array[1].powerstats.strength,
@@ -47,6 +50,7 @@ const request = () => {
               },
               carta3 = {
                   nome: array[2].name,
+                  imagem: array[2].images.lg,
                   atributos: {
                       Inteligência: array[2].powerstats.intelligence,
                       Força: array[2].powerstats.strength,
@@ -58,6 +62,7 @@ const request = () => {
               },
               carta4 = {
                   nome: array[3].name,
+                  imagem: array[3].images.lg,
                   atributos: {
                       Inteligência: array[3].powerstats.intelligence,
                       Força: array[3].powerstats.strength,
@@ -69,6 +74,7 @@ const request = () => {
               },
               carta5 = {
                   nome: array[4].name,
+                  imagem: array[4].images.lg,
                   atributos: {
                       Inteligência: array[4].powerstats.intelligence,
                       Força: array[4].powerstats.strength,
@@ -80,6 +86,7 @@ const request = () => {
               },
               carta6 = {
                   nome: array[5].name,
+                  imagem: array[5].images.lg,
                   atributos: {
                       Inteligência: array[5].powerstats.intelligence,
                       Força: array[5].powerstats.strength,
@@ -91,6 +98,7 @@ const request = () => {
               },
               carta7 = {
                   nome: array[6].name,
+                  imagem: array[6].images.lg,
                   atributos: {
                       Inteligência: array[6].powerstats.intelligence,
                       Força: array[6].powerstats.strength,
@@ -102,6 +110,7 @@ const request = () => {
               },
               carta8 = {
                   nome: array[7].name,
+                  imagem: array[7].images.lg,
                   atributos: {
                       Inteligência: array[7].powerstats.intelligence,
                       Força: array[7].powerstats.strength,
@@ -113,6 +122,7 @@ const request = () => {
               },
               carta9 = {
                   nome: array[8].name,
+                  imagem: array[8].images.lg,
                   atributos: {
                       Inteligência: array[8].powerstats.intelligence,
                       Força: array[8].powerstats.strength,
@@ -124,6 +134,7 @@ const request = () => {
               },
               carta10 = {
                   nome: array[9].name,
+                  imagem: array[9].images.lg,
                   atributos: {
                       Inteligência: array[9].powerstats.intelligence,
                       Força: array[9].powerstats.strength,
@@ -181,6 +192,7 @@ function sortear(){
         let numeroCartaMaquina = parseInt(Math.random() * deckMaquina.length);
         cartaJogador = deckJogador[numeroCartaJogador];
         cartaMaquina = deckMaquina[numeroCartaMaquina];
+        exibirCartaJogador();
         exibirAtributos();
         limpaCartaMaquina();
         document.getElementById("sorteio").disabled = true;
@@ -193,9 +205,15 @@ function sortear(){
     }
 }
 
+function exibirCartaJogador(){
+    let carta = document.getElementById("areaJogador");
+    carta.style.backgroundImage = `url(${cartaJogador.imagem})`;
+}
 
 function exibirCartaMaquina(){
+    let maquina = document.getElementById("areaMaquina");
     let nome = `<p class="nomeCarta">${cartaMaquina.nome}</p>`;
+    maquina.style.backgroundImage = `url(${cartaMaquina.imagem})`; 
     let opcoes = document.getElementById("atributos-maquina");
     let texto = "";
     for(let atributo in cartaMaquina.atributos){
@@ -205,7 +223,11 @@ function exibirCartaMaquina(){
 }
 
 function limpaCartaMaquina(){
+    let revelar = document.getElementById("areaMaquina");
+    revelar.style.backgroundImage = `${cartaBranca.imagem}`;
+    let maquina = document.getElementById("areaMaquina");
     let nome = `<p class="nomeCarta">${cartaBranca.nome}</p>`;
+    maquina.style.backgroundImage = `url(${cartaBranca.imagem})`;
     let opcoes = document.getElementById("atributos-maquina");
     let texto = "";
     for(let atributo in cartaBranca.atributos){
