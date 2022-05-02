@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8df93628-6ad3-4901-9f98-cb5e6b213734" name="Changes" comment="tela de login" />
+    <list default="true" id="8df93628-6ad3-4901-9f98-cb5e6b213734" name="Changes" comment="tela de login">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,6 +48,9 @@
       <updated>1650888458354</updated>
       <workItem from="1650888459514" duration="20000" />
       <workItem from="1651097840708" duration="647000" />
+      <workItem from="1651100307453" duration="653000" />
+      <workItem from="1651250229314" duration="13000" />
+      <workItem from="1651250471917" duration="63000" />
     </task>
     <task id="LOCAL-00001" summary="tela de login">
       <created>1651098458732</created>
