@@ -22,7 +22,6 @@ app.get('/login', function (req, res) {
 app.get('/cadastrar', function (req, res) {
     app.use(express.static(path.resolve(__dirname+'/login/cadastrar')))
     res.render(path.resolve(__dirname+'/login/cadastrar/cadastrar.html'))
-    
 });
 
 
