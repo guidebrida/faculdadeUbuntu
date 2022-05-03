@@ -20,9 +20,14 @@ app.get('/login', function (req, res) {
     res.render(path.resolve(__dirname+'/login/login.html'))
 });
 app.get('/cadastrar', function (req, res) {
+<<<<<<< HEAD
     app.use(express.static(path.resolve(__dirname+'/login/cadastrar')))
     res.render(path.resolve(__dirname+'/login/cadastrar/cadastrar.html'))
     
+=======
+    app.use(express.static(path.resolve(__dirname+'/cadastrar')))
+    res.render(path.resolve(__dirname+'/login/cadastrar/cadastrar.html'))
+>>>>>>> b323ab2a58a298d0a9aaa9dcfe7254880029e232
 });
 
 

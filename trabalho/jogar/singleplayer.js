@@ -155,13 +155,20 @@ var deckMaquina = [];
 var cartaJogador;
 var cartaMaquina;
 var ganhador = 0;
+<<<<<<< HEAD
 var vencedorRodada = true;
+=======
+>>>>>>> b323ab2a58a298d0a9aaa9dcfe7254880029e232
 
 function iniciar(){
     divideCartas();
     console.log(deckJogador)
     console.log(deckMaquina)
+<<<<<<< HEAD
     proximaRodada();
+=======
+    proximaCarta();
+>>>>>>> b323ab2a58a298d0a9aaa9dcfe7254880029e232
     document.getElementById("mensagem").innerHTML = "Escolha um atributo";
     document.getElementById("iniciar").disabled = true;
     document.getElementById("joga").disabled = false;
@@ -187,7 +194,11 @@ function divideCartas() {
     }
 }
 
+<<<<<<< HEAD
 function proximaRodada(){
+=======
+function proximaCarta(){
+>>>>>>> b323ab2a58a298d0a9aaa9dcfe7254880029e232
     ganhador = vencedor();
     if(ganhador == 0){
         cartaJogador = deckJogador[0];
@@ -195,7 +206,11 @@ function proximaRodada(){
         exibirCartaJogador();
         exibirAtributos();
         limpaCartaMaquina();
+<<<<<<< HEAD
         document.getElementById("proximaRodada").disabled = true;
+=======
+        document.getElementById("proximaCarta").disabled = true;
+>>>>>>> b323ab2a58a298d0a9aaa9dcfe7254880029e232
         document.getElementById("joga").disabled = false;
         if(!vencedorRodada){
             jogar()
@@ -251,11 +266,17 @@ function exibirAtributos(){
 
 function atributoSelecionado(){
     let pegaAtributo = document.getElementsByName("atributo");
+<<<<<<< HEAD
     if(vencedorRodada){
         for(let i = 0; i < pegaAtributo.length; i++){
             if(pegaAtributo[i].checked){
                 return pegaAtributo[i].value;
             }
+=======
+    for(let i = 0; i < pegaAtributo.length; i++){
+        if(pegaAtributo[i].checked){
+            return pegaAtributo[i].value;
+>>>>>>> b323ab2a58a298d0a9aaa9dcfe7254880029e232
         }
     }else{
         let i = Math.floor(Math.random() * 6)
@@ -269,7 +290,11 @@ function jogar(){
     let resultado = document.getElementById("mensagem");
     let valorCartaJogador = cartaJogador.atributos[atributo];
     let valorCartaMaquina = cartaMaquina.atributos[atributo];
+<<<<<<< HEAD
     document.getElementById("proximaRodada").disabled = false;
+=======
+    document.getElementById("proximaCarta").disabled = false;
+>>>>>>> b323ab2a58a298d0a9aaa9dcfe7254880029e232
     document.getElementById("joga").disabled = true;
 
     if(valorCartaJogador > valorCartaMaquina){
@@ -293,6 +318,7 @@ function jogar(){
 
 function trocarCartas(){
     let aux = []
+<<<<<<< HEAD
     if(vencedorRodada){
         aux[0] = deckJogador[0]
         for(let i = 0; i < deckJogador.length; i++){
@@ -310,6 +336,22 @@ function trocarCartas(){
             }else{
                 deckMaquina[i] = aux[0] 
             }
+=======
+    aux[0] = deckJogador[0]
+    for(let i = 0; i < deckJogador.length; i++){
+        if(deckJogador.length !== i+1){
+            deckJogador[i] = deckJogador[i+1]
+        }else{
+            deckJogador[i] = aux[0] 
+        }
+    }
+    aux[0] = deckMaquina[0]
+    for(let i = 0; i < deckMaquina.length; i++){
+        if(deckMaquina.length !== i+1){
+            deckMaquina[i] = deckMaquina[i+1]
+        }else{
+            deckMaquina[i] = aux[0] 
+>>>>>>> b323ab2a58a298d0a9aaa9dcfe7254880029e232
         }
     }
 }
@@ -318,13 +360,21 @@ function vencedor(){
     if(deckJogador.length == 10){
         document.getElementById("mensagem").innerHTML = "Parabéns você venceu!"
         document.getElementById("joga").disabled = true;
+<<<<<<< HEAD
         document.getElementById("proximaRodada").disabled = true;
+=======
+        document.getElementById("proximaCarta").disabled = true;
+>>>>>>> b323ab2a58a298d0a9aaa9dcfe7254880029e232
         document.getElementById("iniciar").disabled = false;
         return true;
     }else if(deckMaquina.length == 10){
         document.getElementById("mensagem").innerHTML = "Infelizmente você perdeu!"
         document.getElementById("joga").disabled = true;
+<<<<<<< HEAD
         document.getElementById("proximaRodada").disabled = true;
+=======
+        document.getElementById("proximaCarta").disabled = true;
+>>>>>>> b323ab2a58a298d0a9aaa9dcfe7254880029e232
         document.getElementById("iniciar").disabled = false;
         return true;
     }else{
