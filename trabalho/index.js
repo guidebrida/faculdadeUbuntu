@@ -20,8 +20,9 @@ app.get('/login', function (req, res) {
     res.render(path.resolve(__dirname+'/login/login.html'))
 });
 app.get('/cadastrar', function (req, res) {
-    app.use(express.static(path.resolve(__dirname+'/cadastrar')))
+    app.use(express.static(path.resolve(__dirname+'/login/cadastrar')))
     res.render(path.resolve(__dirname+'/login/cadastrar/cadastrar.html'))
+    
 });
 
 
