@@ -62,7 +62,9 @@ button {
     border-radius: 8px;
     box-shadow: 1px 1px 1px white;
     background-size: 100%;
-    text-shadow: 30px;
+    text-transform: uppercase;
+    text-decoration: double;
+    text-shadow: 5px 5px 20px #000000;
     background-repeat: no-repeat;
 }
 
