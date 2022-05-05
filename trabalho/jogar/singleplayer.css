@@ -62,6 +62,7 @@ button {
     border-radius: 8px;
     box-shadow: 1px 1px 1px white;
     background-size: 100%;
+    text-shadow: 30px;
     background-repeat: no-repeat;
 }
 
