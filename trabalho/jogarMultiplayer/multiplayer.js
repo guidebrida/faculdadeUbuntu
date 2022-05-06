@@ -151,24 +151,24 @@ const request = () => {
   request();
 
 var deckJogador = [];
-var deckMaquina = [];
+var deckJogador2 = [];
 var cartaJogador;
-var cartaMaquina;
+var cartaJogador2;
 var ganhador = 0;
-let msgAtributo = document.getElementById("mensagem2");
 var vencedorRodada = true;
 var condicaoEmpate = 0
 
 function iniciar(){
     divideCartas();
     console.log(deckJogador)
-    console.log(deckMaquina)
+    console.log(deckJogador2)
     proximaRodada();
     document.getElementById("mensagem").innerHTML = "Escolha um atributo";
     document.getElementById("iniciar").disabled = true;
     document.getElementById("joga").disabled = false;
     exibirAtributos();
-    document.getElementById("placar").innerHTML = `Placar ${deckJogador.length} x ${deckMaquina.length}`;
+    exibirAtributosJogador2()
+    document.getElementById("placar").innerHTML = `Placar ${deckJogador.length} x ${deckJogador2.length}`;
 }
 
 function divideCartas() {
@@ -176,7 +176,7 @@ function divideCartas() {
     let carta;
   
     deckJogador = [];
-    deckMaquina = [];
+    deckJogador2 = [];
   
     while (baralhoAux.length > 0) {
         carta = parseInt(Math.random() * baralhoAux.length);
@@ -184,30 +184,26 @@ function divideCartas() {
         baralhoAux.splice(carta, 1);
     
         carta = parseInt(Math.random() * baralhoAux.length);
-        deckMaquina.push(baralhoAux[carta]);
+        deckJogador2.push(baralhoAux[carta]);
         baralhoAux.splice(carta, 1);
     }
 }
 
 function proximaRodada(){
-    msgAtributo.innerHTML = ""
     ganhador = vencedor();
     if(ganhador == 0){
         cartaJogador = deckJogador[0];
-        cartaMaquina = deckMaquina[0];
+        cartaJogador2 = deckJogador2[0];
         exibirCartaJogador();
         exibirAtributos();
-        limpaCartaMaquina();
+        exibircartaJogador2();
+        exibirAtributosJogador2();
         document.getElementById("proximaRodada").disabled = true;
         document.getElementById("joga").disabled = false;
-        if(!vencedorRodada){
-            jogar()
-        }else{
-            document.getElementById("mensagem").innerHTML = "Escolha um atributo";
-        }
+        document.getElementById("mensagem").innerHTML = "Escolha um atributo";
     }else{
         cartaJogador = null;
-        cartaMaquina = null;
+        cartaJogador2 = null;
     }
 }
 
@@ -216,30 +212,9 @@ function exibirCartaJogador(){
     carta.style.backgroundImage = `url(${cartaJogador.imagem})`;
 }
 
-function exibirCartaMaquina(){
+function exibircartaJogador2(){
     let maquina = document.getElementById("areaMaquina");
-    let nome = `<p class="nomeCarta">${cartaMaquina.nome}</p>`;
-    maquina.style.backgroundImage = `url(${cartaMaquina.imagem})`; 
-    let opcoes = document.getElementById("atributos-maquina");
-    let texto = "";
-    for(let atributo in cartaMaquina.atributos){
-        texto+= "<p type='text' name='atributo' value='" + atributo + "'>" + atributo + ": " + cartaMaquina.atributos[atributo] + "</p>";
-    }
-    opcoes.innerHTML = nome + texto;
-}
-
-function limpaCartaMaquina(){
-    let revelar = document.getElementById("areaMaquina");
-    revelar.style.backgroundImage = `${cartaBranca.imagem}`;
-    let maquina = document.getElementById("areaMaquina");
-    let nome = `<p class="nomeCarta">${cartaBranca.nome}</p>`;
-    maquina.style.backgroundImage = `url(${cartaBranca.imagem})`;
-    let opcoes = document.getElementById("atributos-maquina");
-    let texto = "";
-    for(let atributo in cartaBranca.atributos){
-        texto+= "<p type='text' name='atributo' value='" + atributo + "'>" + " " + "</p>";
-    }
-    opcoes.innerHTML = nome + texto;
+    maquina.style.backgroundImage = `url(${cartaJogador2.imagem})`; 
 }
 
 function exibirAtributos(){
@@ -252,44 +227,44 @@ function exibirAtributos(){
     opcoes.innerHTML = nome + texto;
 }
 
+function exibirAtributosJogador2(){
+    let opcoes = document.getElementById("atributos-maquina");
+    let nome = `<p class="nomeCarta">${cartaJogador2.nome}</p>`;
+    let texto = "";
+    for(let atributo in cartaJogador2.atributos){
+        texto+= "<input type='radio' name='atributo' value='" + atributo + "' checked>" + atributo + ": " + cartaJogador2.atributos[atributo] + "<br>";
+    }
+    opcoes.innerHTML = nome + texto;
+}
+
 function atributoSelecionado(){
     let pegaAtributo = document.getElementsByName("atributo");
-    if(vencedorRodada){
         for(let i = 0; i < pegaAtributo.length; i++){
             if(pegaAtributo[i].checked){
                 return pegaAtributo[i].value;
             }
         }
-    }else{
-        let i = Math.floor(Math.random() * 6)
-        return pegaAtributo[i].value;
-    }  
 }
 
 function jogar(){
-    exibirCartaMaquina();
     let atributo = atributoSelecionado();
     let resultado = document.getElementById("mensagem");
     let valorCartaJogador = cartaJogador.atributos[atributo];
-    let valorCartaMaquina = cartaMaquina.atributos[atributo];
+    let valorcartaJogador2 = cartaJogador2.atributos[atributo];
     document.getElementById("proximaRodada").disabled = false;
     document.getElementById("joga").disabled = true;
 
-    if(!vencedorRodada){
-        msgAtributo.innerHTML = "Atributo Selecionado: " + atributo
-    }
-
-    if(valorCartaJogador > valorCartaMaquina){
+    if(valorCartaJogador > valorcartaJogador2){
         vencedorRodada = true
-        resultado.innerHTML = "Você venceu";
-        deckJogador.push(deckMaquina[0])
-        deckMaquina.splice(0,1)
-    }else if(valorCartaJogador < valorCartaMaquina){
+        resultado.innerHTML = "Jogador 1 venceu";
+        deckJogador.push(deckJogador2[0])
+        deckJogador2.splice(0,1)
+    }else if(valorCartaJogador < valorcartaJogador2){
         vencedorRodada = false
-        resultado.innerHTML = "Você perdeu";
-        deckMaquina.push(deckJogador[0])
+        resultado.innerHTML = "Jogador 2 Venceu";
+        deckJogador2.push(deckJogador[0])
         deckJogador.splice(0,1)
-    }else if(valorCartaJogador === valorCartaMaquina){
+    }else if(valorCartaJogador === valorcartaJogador2){
         if(vencedorRodada){
             condicaoEmpate = 1
         }else{
@@ -297,10 +272,10 @@ function jogar(){
         }
         resultado.innerHTML = "Empate!"
     }
-    document.getElementById("placar").innerHTML = `Placar ${deckJogador.length} x ${deckMaquina.length}`;
+    document.getElementById("placar").innerHTML = `Placar ${deckJogador.length} x ${deckJogador2.length}`;
     trocarCartas()
     console.log(deckJogador)
-    console.log(deckMaquina)
+    console.log(deckJogador2)
 }
 
 function trocarCartasJogador(){
@@ -314,26 +289,27 @@ function trocarCartasJogador(){
             }
         }
 }
-function trocarCartasMaquina(){
+function trocarCartasJogador2(){
     let aux = []
-    aux[0] = deckMaquina[0]
-        for(let i = 0; i < deckMaquina.length; i++){
-            if(deckMaquina.length !== i+1){
-                deckMaquina[i] = deckMaquina[i+1]
+    aux[0] = deckJogador2[0]
+        for(let i = 0; i < deckJogador2.length; i++){
+            if(deckJogador2.length !== i+1){
+                deckJogador2[i] = deckJogador2[i+1]
             }else{
-                deckMaquina[i] = aux[0] 
+                deckJogador2[i] = aux[0] 
             }
         }
 }
+
 function trocarCartas(){
     if(vencedorRodada){
         trocarCartasJogador()
         if(condicaoEmpate == 1){
-            trocarCartasMaquina()
+            trocarCartasJogador2()
             condicaoEmpate = 0
         }
     }else{
-        trocarCartasMaquina()
+        trocarCartasJogador2()
         if (condicaoEmpate == 2) {
             trocarCartasJogador()
             condicaoEmpate = 0
@@ -348,7 +324,7 @@ function vencedor(){
         document.getElementById("proximaRodada").disabled = true;
         document.getElementById("iniciar").disabled = false;
         return true;
-    }else if(deckMaquina.length == 10){
+    }else if(deckJogador2.length == 10){
         document.getElementById("mensagem").innerHTML = "Infelizmente você perdeu!"
         document.getElementById("joga").disabled = true;
         document.getElementById("proximaRodada").disabled = true;
