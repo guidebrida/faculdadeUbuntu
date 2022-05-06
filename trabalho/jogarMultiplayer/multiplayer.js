@@ -167,7 +167,6 @@ function iniciar(){
     document.getElementById("iniciar").disabled = true;
     document.getElementById("joga").disabled = false;
     exibirAtributos();
-    exibirAtributosJogador2()
     document.getElementById("placar").innerHTML = `Placar ${deckJogador.length} x ${deckJogador2.length}`;
 }
 
@@ -194,10 +193,15 @@ function proximaRodada(){
     if(ganhador == 0){
         cartaJogador = deckJogador[0];
         cartaJogador2 = deckJogador2[0];
-        exibirCartaJogador();
-        exibirAtributos();
-        exibircartaJogador2();
-        exibirAtributosJogador2();
+        if(vencedorRodada){
+            exibirCartaJogador();
+            exibirAtributos();
+            limpaCartaJogador2()
+        }else{
+            exibircartaJogador2();
+            exibirAtributosJogador2();
+            limpaCartaJogador()
+        }
         document.getElementById("proximaRodada").disabled = true;
         document.getElementById("joga").disabled = false;
         document.getElementById("mensagem").innerHTML = "Escolha um atributo";
@@ -246,7 +250,42 @@ function atributoSelecionado(){
         }
 }
 
+function limpaCartaJogador() {
+    let revelar = document.getElementById("areaJogador");
+    revelar.style.backgroundImage = `${cartaBranca.imagem}`;
+    let jogador2 = document.getElementById("areaJogador");
+    let nome = `<p class="nomeCarta">${cartaBranca.nome}</p>`;
+    jogador2.style.backgroundImage = `url(${cartaBranca.imagem})`;
+    let opcoes = document.getElementById("opcoes-atributos");
+    let texto = "";
+    for(let atributo in cartaBranca.atributos){
+        texto+= "<p type='text' name='atributo' value='" + atributo + "'>" + " " + "</p>";
+    }
+    opcoes.innerHTML = nome + texto;
+}
+
+function limpaCartaJogador2(){
+    let revelar = document.getElementById("areaMaquina");
+    revelar.style.backgroundImage = `${cartaBranca.imagem}`;
+    let jogador2 = document.getElementById("areaMaquina");
+    let nome = `<p class="nomeCarta">${cartaBranca.nome}</p>`;
+    jogador2.style.backgroundImage = `url(${cartaBranca.imagem})`;
+    let opcoes = document.getElementById("atributos-maquina");
+    let texto = "";
+    for(let atributo in cartaBranca.atributos){
+        texto+= "<p type='text' name='atributo' value='" + atributo + "'>" + " " + "</p>";
+    }
+    opcoes.innerHTML = nome + texto;
+}
+
 function jogar(){
+    if(vencedorRodada){
+        exibircartaJogador2();
+        exibirAtributosJogador2();
+    }else{
+        exibirCartaJogador();
+        exibirAtributos();
+    }
     let atributo = atributoSelecionado();
     let resultado = document.getElementById("mensagem");
     let valorCartaJogador = cartaJogador.atributos[atributo];

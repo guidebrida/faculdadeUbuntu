@@ -1,7 +1,7 @@
-function cadastrado(){
-    alert("Cadastro do super heroi efetuado")
-    window.location.href="../../index.html"
-}
+// function cadastrado(){
+//     alert("Cadastro do super heroi efetuado")
+//     window.location.href="../../index.html"
+// }
 
 function guardaFormulario(){
     var listaHeroi = new Object();
@@ -13,6 +13,13 @@ function guardaFormulario(){
     listaHeroi.Poder = document.getElementById('Poder').value;
     listaHeroi.Combate = document.getElementById('Combate').value;
 
-    console.log(listaHeroi.valueOf());
+    console.log(listaHeroi);
 
+    try{
+        axios.post('/arquivo', listaHeroi)
+    }catch(error){
+        console.log(error)
+    }
+    
 }
+
