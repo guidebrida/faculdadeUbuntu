@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Trunfo</title>
+    <link rel="stylesheet" href="multiplayer.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <h1>Super Trunfo</h1>
+    </header>
+    <main>
+        <div class="area-jogo">
+            <div class="area-jogador" id="areaJogador">
+                <div class="atributos" id="opcoes-atributos">
+                </div>
+            </div>
+            <div class="info">
+                <p id="placar">Placar 0 x 0</p><br>
+                <p id="mensagem"></p><br>
+                <div style="margin-bottom: 20px;">
+                    <button id="proximaRodada" class="button-6" onclick="proximaRodada()" disabled="false">Proxima Rodada</button>
+                </div>
+                <p id="mensagem2"></p>
+            </div>
+            <div class="area-maquina" id="areaMaquina">
+                <div class="atributos" id="atributos-maquina">
+                </div>
+            </div>
+        </div>
+        <a  class="button-24"  href="/">voltar</a>
+        <button id="iniciar" class="button-6" onclick="iniciar()">Iniciar Jogo</button>
+        <button id="joga" class="button-6"  onclick="jogar()" disabled="true">Jogar</button>
+    </main>
+    <script src="multiplayer.js"></script>
+</body>
+</html>
